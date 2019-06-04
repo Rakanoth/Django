@@ -1,0 +1,18 @@
+{% extends 'disciplina/base.html' %}
+
+{% block content %}
+    {% for disciplina in materias %}
+        <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="0ms" data-wow-delay="100ms">
+            <div class="disciplina">
+            	<style>
+            	h1{font-size: 20pt}
+            	h1{font-family: 'Lobster', cursive}
+            	p{color:black}
+            	p{font-family: 'Arial Black', cursive}
+            	</style>
+                <h1><a href="{% url 'detail' disciplina.id %}">{{ disciplina.nome }}</a></h1>
+            	<p>Carga horária: {{ disciplina.carga_horaria|linebreaksbr }} hrs</p>
+            </div>
+        </div><!--/.col-md-4-->
+    {% endfor %}
+{% endblock content %}

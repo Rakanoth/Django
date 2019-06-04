@@ -1,0 +1,75 @@
+{% extends 'candidato/base.html' %}
+
+{% block content %}
+<div class="candidato">
+	<a class="btn btn-default" href="{% url 'candidato_edit' pk=candidato.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>	
+	<div class="get-started center wow fadeInDown">
+		<div class="Perfil">
+	        <style>
+	        h1{font-size: 25pt}
+			h1{color:black}
+			h1{font-family: 'Open Sans'}
+			</style>
+			<h1>{{ candidato.nome_urna_candidato }}</h1>
+			<style>
+			p{color: #E6253F}
+	        p{font-family: 'Open Sans'}
+	        </style>
+	        <p>{{ candidato.descricao_cargo }}</p>
+	        <p>{{ candidato.sigla_partido }} - {{ candidato.sigla_uf }}</p>
+       	</div>
+    </div><!--/.get-started-->
+    <div class="get-started center wow fadeInDown">
+		<div class="CandidaturaAtual">
+	        <style>
+	        h2{color:black}
+			h2{font-family: 'Open Sans'}
+			h2{font-size: 1pt}
+			p{color: #E6253F}
+	        p{font-family: 'Lobster', cursive}
+			</style>
+			<h2>Perfil</h2>
+
+		        <p>Cargo concorrido: <br />
+		        	{{ candidato.descricao_cargo }}<br />
+		        	{{ candidato.descricao_ue }}/{{ candidato.sigla_uf }}</p>
+		        <p>Número do candidato: <br />
+		        	{{ candidato.numero_candidato }}</p>
+		        <p>Partido: <br />{{ candidato.sigla_partido }} - {{ candidato.sigla_uf }}</p>
+		        <p>Legenda: <br />
+		        	{{ candidato.composicao_legenda }}<br />
+		        	{{ candidato.nome_legenda }}</p>
+
+       	</div>
+    </div><!--/.get-started-->
+    <div class="get-started center wow fadeInDown">
+		<div class="Pessoal">
+	        <style>
+	        h2{color:black}
+			h2{font-family: 'Lobster', cursive}
+			h2{font-size: 1pt}
+			p{color: #E6253F}
+	        p{font-family: 'Lobster', cursive}
+			</style>
+			<h2>Pessoal:</h2>
+
+        		<p>Nome Completo: <br />
+        			{{ candidato.nome_candidato }}</p>
+        		<p>Ocupação: <br />
+        			{{ candidato.descricao_ocupacao }}</p>
+        		<p>Grau de instrução: 
+        			<br />{{ candidato.descricao_grau_instrucao }}</p>
+        		<p>Data de Nascimento: <br />
+        			{{ candidato.data_nascimento }}</p>
+        		<p>Naturalidade: <br />
+        			{{ candidato.nome_municipio_nascimento }} - {{ candidato.sigla_uf_nascimento }}</p>
+        		<p>Contato: <br />
+        			{{ candidato.email }}</p>
+
+       	</div>
+    </div><!--/.get-started-->
+    <div class="Lista de Bens">
+
+    </div>
+</div>
+{% endblock %}

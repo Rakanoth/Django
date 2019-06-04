@@ -1,0 +1,39 @@
+[
+    {
+        "model": "bens.bens", "pk": 1,
+        "fields":
+        {
+            "data_geracao": "2016-06-01",
+            "hora_geracao": "06:00:00",
+            "ano_eleicao": 2014,
+            "descricao_eleicao": "descricao",
+            "sigla_uf": "da",
+            "sequencial_candidato": 786,
+            "cd_tipo_bem_candidato": 76,
+            "ds_tipo_bem_candidato": "76",
+            "detalhe_bem": "76",
+            "valor_bem": 76.786,
+            "data_ultima_att": "2016-06-17",
+            "hora_ultima_att": "06:00:00"
+        }
+    },
+    {
+        "model": "bens.bens",
+        "pk": 2,
+        "fields":
+        {
+            "data_geracao": "2016-06-01",
+            "hora_geracao": "06:00:00",
+            "ano_eleicao": 2014,
+            "descricao_eleicao": "descricao",
+            "sigla_uf": "da",
+            "sequencial_candidato": 786,
+            "cd_tipo_bem_candidato": 76,
+            "ds_tipo_bem_candidato": "76",
+            "detalhe_bem": "76",
+            "valor_bem": 76.786,
+            "data_ultima_att": "2016-06-17",
+            "hora_ultima_att": "06:00:00"
+        }
+    }
+]

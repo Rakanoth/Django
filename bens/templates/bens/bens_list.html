@@ -1,0 +1,10 @@
+{% extends 'bens/base.html' %}
+
+{% block content %}
+    {% for bem in bens %}
+        <div class="bens">
+            <h1><a href="{% url 'detail' bem.id %}">{{ bem.ds_tipo_bem_candidato }}</a></h1>
+            <p>Valor: {{ bem.valor_bem }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}

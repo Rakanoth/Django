@@ -1,0 +1,19 @@
+{% extends 'candidato/base.html' %}
+
+{% block content %}
+    {% for candidato in candidatos %}
+        <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="0ms" data-wow-delay="100ms">
+            <div class="candidato">
+            	<style>
+            	h1{font-size: 15pt}
+            	h1{font-family: 'Open Sans'}
+            	p{color:black}
+            	p{font-family: 'Arial Black', cursive}
+            	</style>
+                <h1><a href="{% url 'detail' candidato.id %}">{{ candidato.nome_urna_candidato }}</a></h1>
+            	<p>{{ candidato.descricao_cargo }}</p>
+            	<p>{{ candidato.sigla_partido }} - {{ candidato.sigla_uf }}</p>
+            </div>
+        </div><!--/.col-md-4-->
+    {% endfor %}
+{% endblock content %}

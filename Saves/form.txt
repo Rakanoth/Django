@@ -1,0 +1,13 @@
+from django import forms
+
+from .models import Candidato
+
+from django.core import serializers
+
+class CandidatoForm(forms.ModelForm):
+
+    class Meta:
+        model = Candidato
+        fields = ('sigla_uf', 'descricao_ue', 'descricao_cargo', 'nome_candidato', 'numero_candidato', 'nome_urna_candidato', 'sigla_partido', 
+        	'composicao_legenda', 'nome_legenda', 'descricao_ocupacao', 'data_nascimento', 'descricao_grau_instrucao', 
+        	'sigla_uf_nascimento', 'nome_municipio_nascimento', 'email',)

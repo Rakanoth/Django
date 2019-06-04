@@ -1,0 +1,2 @@
+Padroes e Frameworks; Roberto; No idea; 60
+Redes de computadores; Daniel; TCP/IP; 60

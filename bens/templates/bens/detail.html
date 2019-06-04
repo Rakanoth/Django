@@ -1,0 +1,9 @@
+{% extends 'bens/base.html' %}
+
+{% block content %}
+	<div class="bens">
+		<h1>{{ bem.ds_tipo_bem_candidato }}</h1>
+		<p>Valor: {{ bem.valor_bem }}</p>
+        <p>{{ bem.detalhe_bem|linebreaksbr }}</p>
+	</div>
+{% endblock %}

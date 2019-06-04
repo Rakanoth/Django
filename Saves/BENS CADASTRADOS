@@ -1,0 +1,31 @@
+from django.shortcuts import render
+from .models import Bem
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render_to_response
+import csv
+import datetime, json, codecs
+
+def formatData(data):
+
+    d = datetime.datetime.strptime(data, '%d/%m/%Y')
+    d = datetime.date.strftime(d, '%Y-%m-%d')
+    return d
+
+def bens_list(request):
+	bens = []
+	with open('bem_candidato_2014_BA.txt', 'r') as f:
+		reader = csv.reader(f, delimiter=';')
+		for bem in reader:
+			Bem(data_geracao=formatData(bem[0]), hora_geracao=bem[1], ano_eleicao=bem[2], descricao_eleicao=bem[3], sigla_uf=bem[4], 
+				sequencial_candidato=bem[5], cd_tipo_bem_candidato=bem[6], ds_tipo_bem_candidato=bem[7], detalhe_bem=bem[8], valor_bem=bem[9], 
+				data_ultima_att=formatData(bem[10]), hora_ultima_att=bem[11],).save()
+
+	return render_to_response(
+        'bens/bens_list.html',
+        {'bens': bens}
+    )
+
+def detail (request, bens_id):
+	bem = get_object_or_404(Bem, pk=bens_id)
+	return render(request, 'bens/detail.html', {'bem': bem})

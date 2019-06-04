@@ -1,0 +1,20 @@
+{% extends 'disciplina/base.html' %}
+
+{% block content %}
+	<div class="get-started center wow fadeInDown">
+		<div class="disciplina">
+	        <style>
+			h1{color:black}
+			h1{font-family: 'Lobster', cursive}
+			p1{color: #E6253F}
+	        p1{font-family: 'Lobster', cursive}
+	        p2{color:blue}
+	        p3{color:green}
+			</style>
+			<h1>{{ disciplina.nome }}</h1>
+			<p1>Professor: {{ disciplina.professor }}</p>
+	        <p2>Ementa: {{ disciplina.ementa|linebreaksbr }}</p>
+	        <p3>Carga horária: {{ disciplina.carga_horaria }} hrs</p>
+       	</div>
+    </div><!--/.get-started-->
+{% endblock %}

@@ -1,0 +1,65 @@
+from django.shortcuts import render
+from .models import Candidato
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from .forms import CandidatoForm
+from django.shortcuts import redirect
+from django.shortcuts import render_to_response
+import csv
+import datetime, json, codecs
+
+def formatData(data):
+
+    d = datetime.datetime.strptime(data, '%d/%m/%Y')
+    d = datetime.date.strftime(d, '%Y-%m-%d')
+    return d
+
+def candidatos_list(request):
+    candidatos = []
+    with open('consulta_cand_2014_BA.txt', 'r') as f:
+        reader = csv.reader(f, delimiter=';')
+        for candidato in reader:
+            Candidato(data_geracao=formatData(candidato[0]), hora_geracao=candidato[1], ano_eleicao=candidato[2], num_turno=candidato[3], 
+                descricao_eleicao=candidato[4], sigla_uf=candidato[5], sigla_ue=candidato[6], descricao_ue=candidato[7], 
+                codigo_cargo=candidato[8], descricao_cargo=candidato[9], nome_candidato=candidato[10], sequencial_candidato=candidato[11], 
+                numero_candidato=candidato[12], cpf_candidato=candidato[13], nome_urna_candidato=candidato[14], cod_situacao_candidatura=candidato[15], 
+                descricao_situacao_candidatura=candidato[16], numero_partido=candidato[17], sigla_partido=candidato[18], nome_partido=candidato[19], 
+                codigo_legenda=candidato[20], sigla_legenda=candidato[21], composicao_legenda=candidato[22], nome_legenda=candidato[23], 
+                codigo_ocupacao=candidato[24], descricao_ocupacao=candidato[25], data_nascimento=formatData(candidato[26]), num_titulo_eleitoral=candidato[27], 
+                idade_data_eleicao=candidato[28], codigo_sexo=candidato[29], descricao_sexo=candidato[30], cod_grau_instrucao=candidato[31], 
+                descricao_grau_instrucao=candidato[32], codigo_estado_civil=candidato[33], descricao_estado_civil=candidato[34], codigo_cor_raca=candidato[35], 
+                descricao_cor_raca=candidato[36], codigo_nacionalidade=candidato[37], descricao_nacionalidade=candidato[38], sigla_uf_nascimento=candidato[39], 
+                codigo_municipio_nascimento=candidato[40], nome_municipio_nascimento=candidato[41], despesa_max_campanha=candidato[42], cod_sit_tot_turno=candidato[43], 
+                desc_sit_tot_turno=candidato[44], email=candidato[45]).save()
+
+    return render_to_response(
+        'candidato/candidatos_list.html',
+        {'candidatos': candidatos}
+    )
+
+def detail (request, candidato_id):
+	candidato = get_object_or_404(Candidato, pk=candidato_id)
+	return render(request, 'candidato/detail.html', {'candidato': candidato})
+
+def candidato_new(request):
+    if request.method == "POST":
+        form = CandidatoForm(request.POST)
+        if form.is_valid():
+            candidato = form.save(commit=False)
+            candidato.save()
+            return redirect('candidato.views.candidatos_list')
+    else:
+        form = CandidatoForm()
+    return render(request, 'candidato/candidato_edit.html', {'form': form})
+
+def candidato_edit(request, pk):
+    candidato = get_object_or_404(Candidato, pk=pk)
+    if request.method == "POST":
+        form = CandidatoForm(request.POST, instance=candidato)
+        if form.is_valid():
+            candidato = form.save(commit=False)
+            candidato.save()
+            return redirect('candidato.views.candidatos_list')
+    else:
+        form = CandidatoForm(instance=candidato)
+    return render(request, 'candidato/candidato_edit.html', {'form': form})
